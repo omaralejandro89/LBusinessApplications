@@ -6,15 +6,15 @@
 
     angular
         .module('app.products')
-        .controller('ProductListController', ['dataservice', ProductListController]);
+        .controller('ProductListController', ['productResource', ProductListController]);
 
-    function ProductListController(dataservice) {
+    function ProductListController(productResource) {
         /* jshint validthis: true */
         var vm = this;
 
+        //vm.products // //dataservice.getProducts();
         vm.activate = activate;
         vm.title = 'ProductController';
-        vm.products = dataservice.getProducts();
         vm.showImage = false;
         vm.toggleImage = toggleImage;
 
@@ -24,7 +24,14 @@
         ////////////////
 
         function activate() {
+            return productResource.query(function(data) {
+                vm.products = data;
+            });
         }
+
+      //  function products() {
+      //
+      //  }
 
         function toggleImage() {
             vm.showImage= !vm.showImage;
