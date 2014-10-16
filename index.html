@@ -3,15 +3,59 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Acme Product Management</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="src/css/app.css"/>
 </head>
-<body ng-app="">
+<body ng-app="app">
+<div ng-controller="ProductListController as vm">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading" style="font-size: large">Product List</div>
+        <div class="panel-body">
+            <table class="table table-responsive">
+
+                <thead>
+                <tr>
+                    <td><button class="btn btn-primary" type="button" ng-click="vm.toggleImage()">
+                        {{vm.showImage ? "Hide" : "Show"}} Image
+                    </button></td>
+                    <td>Product</td>
+                    <td>Code</td>
+                    <td>Available</td>
+                    <td>Price</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="product in vm.products">
+                    <td><img ng-if="vm.showImage" ng-src="{{product.imageUrl}}" title="{{product.productName}}" style="width: 50px; margin: 2px"/></td>
+                    <td>{{product.productName}}</td>
+                    <td>{{product.productCode}}</td>
+                    <td>{{product.releaseDate}}</td>
+                    <td>{{product.price | currency}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
 
 
 <!-- LibraryScripts -->
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
 <!-- Modules-->
+<script src="src/app.js"></script>
+<script src="src/app/products/products.module.js"></script>
+<script src="src/app/core/core.module.js"></script>
+
+
 <!-- Controllers -->
+<script src="src/app/products/productsListController.js"></script>
+
 <!-- Services-->
+<script src="src/app/core/dataService.js"></script>
+
 </body>
 </html>

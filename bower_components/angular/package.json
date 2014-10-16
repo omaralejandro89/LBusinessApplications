@@ -14,7 +14,7 @@
     "angular",
     "framework",
     "browser",
-    "client-side"
+    "app-side"
   ],
   "author": "Angular Core Team <angular-core+npm@google.com>",
   "license": "MIT",
