@@ -98,7 +98,7 @@
 
                 if (!product.productId) {
                     //new Product id
-                    product.productId = product[products.length - 1].productId + 1;
+                    product.productId = products[products.length - 1].productId + 1;
                     products.push(product);
                 }
                 else {

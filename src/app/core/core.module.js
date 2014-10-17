@@ -5,5 +5,7 @@ angular.module('app.core', [
     'ui.router',
     'ngResource',
     //Logger
-    'blocks.logger'
+    'blocks.logger',
+    'ui.mask',
+    'ui.bootstrap'
 ]);
