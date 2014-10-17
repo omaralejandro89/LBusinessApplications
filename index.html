@@ -24,7 +24,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a ui-sref="productList">Product List</a></li>
-                    <li><a ui-sref="productEdit({productId:0})"><i class="glyphicon glyphicon-plus"></i>Add Product</a></li>
+                    <li><a ui-sref="productEdit.info({productId:0})"><i class="glyphicon glyphicon-plus"></i>Add Product</a></li>
                 </ul>
             </div>
         </div>
@@ -53,6 +53,8 @@
 
 <!-- Controllers -->
 <script src="src/app/products/productsListController.js"></script>
+<script src="src/app/products/productDetailController.js"></script>
+<script src="src/app/products/productEditController.js"></script>
 
 <!-- Services-->
 <script src="src/app/core/dataService.js"></script>

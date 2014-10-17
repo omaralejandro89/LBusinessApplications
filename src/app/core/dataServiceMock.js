@@ -75,7 +75,7 @@
             var productUrl = "/api/products"
             $httpBackend.whenGET(productUrl).respond(products);
 
-            var editingRegex = new RegExp(productUrl + "/[0,9][0,9]*", '');
+            var editingRegex = new RegExp(productUrl + "/[0-9][0-9]*", '');
             $httpBackend.whenGET(editingRegex).respond(function(method, url, data) {
                 var product = {"productId": 0};
                 var parameters = url.split('/');
@@ -83,12 +83,12 @@
                 var id = parameters[length-1];
 
                 if (id > 0) {
-                    for (var i=0; i <product.length; i++) {
+                    for (var i=0; i <products.length; i++) {
                         if (products[i].productId == id) {
                             product = products[i];
                             break;
                         }
-                    };
+                    }
                 }
                 return [200, product, {}];
             });
@@ -110,12 +110,11 @@
                         }
                     }
                 }
+                return [200, product, {}];
             });
 
             //Pass through any requests for application files
             $httpBackend.whenGET(/app/).passThrough();
         });
-
-
 
 })();
