@@ -6,10 +6,10 @@
 
     angular
         .module('app.products')
-        .controller('ProductEditController', ['product', '$state', ProductEditController]);
+        .controller('ProductEditController', ['product', '$state', 'productService', ProductEditController]);
 
     /* @ngInject */
-    function ProductEditController(product, $state) {
+    function ProductEditController(product, $state, productService) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -22,6 +22,10 @@
         //Search
         vm.addTags = addTags;
         vm.removeTags = removeTags;
+        //Price
+        vm.priceOption = "percent";
+        vm.marginPercent = marginPercent;
+        vm.calculatePrice = calculatePrice;
 
         activate();
 
@@ -75,6 +79,27 @@
         function removeTags(idx) {
             vm.product.tags.splice(idx, 1);
         }
+
+        //Price
+        function marginPercent() {
+            return productService.calculateMarginPercent(vm.product.price, vm.product.cost);
+        }
+
+        function calculatePrice () {
+            var price = 0;
+
+            if (vm.priceOption == 'amount') {
+                price = productService.calculatePriceFromMarkupAmount(vm.product.cost, vm.markupAmount);
+            }
+
+            if (vm.priceOption == 'percent') {
+                price = productService.calculatePriceFromMarkupPercent(vm.product.cost, vm.markupPercent);
+            }
+
+            vm.product.price = price;
+        };
+
+
 
 
     }

@@ -6,10 +6,10 @@
 
     angular
         .module('app.products')
-        .controller('ProductDetailController', ['product', ProductDetailController]);
+        .controller('ProductDetailController', ['product', 'productService', ProductDetailController]);
 
     /* @ngInject */
-    function ProductDetailController(product) {
+    function ProductDetailController(product, productService) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -17,6 +17,7 @@
 
         vm.activate = activate;
         vm.title = 'Product Detail: ' + vm.product.productName;
+        vm.marginPercent = productService.calculateMarginPercent(vm.product.price, vm.product.cost)
 
         if (vm.product.tags) {
             vm.product.tagList = vm.product.tags.toString();
